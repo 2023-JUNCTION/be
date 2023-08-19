@@ -13,21 +13,21 @@ import jakarta.persistence.Table
 @Table(name = "order_menu")
 @Entity
 class OrderMenu(
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id", updatable = false)
-  var id: Long? = null,
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false)
+    var id: Long? = null,
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "order_table")
-  var order: Order,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_table")
+    var order: Order,
 
-  @Column(name = "menuId")
-  var menuId: Long,
+    @Column(name = "menuId")
+    var menuId: Long,
 
-  @Column(name = "menuName")
-  var menuName: String,
+    @Column(name = "menuName")
+    var menuName: String,
 
-  @Column(name = "menuCount")
-  var menuCount: Int,
+    @Column(name = "menuCount")
+    var menuCount: Int,
 )

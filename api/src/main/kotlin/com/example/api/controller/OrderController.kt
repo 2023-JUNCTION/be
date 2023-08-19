@@ -5,7 +5,6 @@ import com.example.api.dto.EmptyResponse
 import com.example.api.dto.ReadOrdersResponse
 import com.example.api.service.CompleteOrderService
 import com.example.api.service.OrderService
-import com.example.domain.entity.Order
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.*
@@ -35,5 +34,11 @@ class OrderController(
     @GetMapping
     fun getOrders(): ReadOrdersResponse {
         return orderService.getOrders()
+    }
+
+    @Operation(description = "완료되지 않은 주문 전체 조회")
+    @GetMapping("/not-complete")
+    fun getOrdersNotComplete(): ReadOrdersResponse {
+        return orderService.getOrdersNotComplete()
     }
 }

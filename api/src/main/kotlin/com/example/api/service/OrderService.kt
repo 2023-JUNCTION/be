@@ -6,9 +6,10 @@ import com.example.api.dto.OrderMenuResponse
 import com.example.api.dto.ReadOrderResponse
 import com.example.api.dto.ReadOrdersResponse
 import com.example.domain.entity.Order
+import com.example.domain.entity.OrderMenu
 import com.example.domain.repository.EslOrderRepository
-// import com.example.domain.entity.OrderMenu
 import com.example.domain.repository.MenuRepository
+import com.example.domain.repository.OrderMenuRepository
 import com.example.domain.repository.OrderRepository
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Service
 @Service
 class OrderService(
     val orderRepository: OrderRepository,
-//    val orderMenuRepository: OrderMenuRepository,
+    val orderMenuRepository: OrderMenuRepository,
     val menuRepository: MenuRepository,
     val eslOrderRepository: EslOrderRepository,
     val solumClient: SolumClient,
@@ -44,19 +45,18 @@ class OrderService(
         )
 
         // 주문메뉴를 생성한다
-//        val orderMenus = request.menus.map {
-//            OrderMenu(
-// //                order = order,
-//                menuId = it.id,
-//                menuName = menus.find { menu -> menu.id == it.id }!!.menuName,
-//                menuCount = it.count,
-//            )
-//        }.toMutableList()
+        val orderMenus = request.menus.map {
+            OrderMenu(
+                order = order,
+                menuId = it.id,
+                menuName = menus.find { menu -> menu.id == it.id }!!.menuName,
+                menuCount = it.count,
+            )
+        }.toMutableList()
 
-        // 주문메뉴를 저장한다.
-//        orderMenuRepository.saveAll(orderMenus)
+        orderMenuRepository.saveAll(orderMenus)
 
-//        order.orderMenu = orderMenus
+        order.orderMenu = orderMenus
 
         // 주문된 영수증 이미지를 esl에 전송한다.
         val labelCode = eslOrderRepository.findByOrderNumber(eslOrderNumber.toLong())?.labelCode
@@ -66,7 +66,7 @@ class OrderService(
     }
 
     fun getOrders(): ReadOrdersResponse {
-        val orders =  orderRepository.findAll()
+        val orders = orderRepository.findAll()
 
         return ReadOrdersResponse(
             orders = orders.map {
@@ -81,8 +81,31 @@ class OrderService(
                         )
                     },
                     done = it.done,
+                    eslOrderNumber = it.eslOrderNumber,
                 )
-            }
+            },
+        )
+    }
+
+    fun getOrdersNotComplete(): ReadOrdersResponse {
+        val orders = orderRepository.findAllByDoneFalse()
+
+        return ReadOrdersResponse(
+            orders = orders.map {
+                ReadOrderResponse(
+                    id = it.id!!,
+                    orderMenu = it.orderMenu.map { orderMenu ->
+                        OrderMenuResponse(
+                            id = orderMenu.id!!,
+                            menuId = orderMenu.menuId,
+                            menuName = orderMenu.menuName,
+                            menuCount = orderMenu.menuCount,
+                        )
+                    },
+                    done = it.done,
+                    eslOrderNumber = it.eslOrderNumber,
+                )
+            },
         )
     }
 }
