@@ -3,6 +3,7 @@ package com.example.api.service
 import com.example.api.client.SolumClient
 import com.example.api.dto.CreateOrderRequest
 import com.example.domain.entity.Order
+import com.example.domain.repository.EslOrderRepository
 // import com.example.domain.entity.OrderMenu
 import com.example.domain.repository.MenuRepository
 import com.example.domain.repository.OrderRepository
@@ -14,6 +15,7 @@ class OrderService(
     val orderRepository: OrderRepository,
 //    val orderMenuRepository: OrderMenuRepository,
     val menuRepository: MenuRepository,
+    val eslOrderRepository: EslOrderRepository,
     val solumClient: SolumClient,
 ) {
     @Transactional
@@ -22,9 +24,11 @@ class OrderService(
         val menus = menuRepository.findAllById(request.menus.map { it.id })
 
         // elsOrderNumber 찾기
-        // 현재 주문 상태인 주문들 중에서 가장 큰 elsOrderNumber를 찾는다.
-        // 만약 주문이 없다면 0으로 초기화한다.
-        val eslOrderNumber = orderRepository.findFirstByOrderByEslOrderNumberDesc()?.eslOrderNumber ?: 0
+        // 현재 주문 상태인 주문들 중에서 가장 작은 (가장 오른쪽) elsOrderNumber를 찾는다.
+        // 만약 주문이 없다면 4로 초기화한다.
+        val findNumber = orderRepository.findFirstByDoneFalseOrderByEslOrderNumberAsc()?.eslOrderNumber
+        // findNumber가 없으면 4로 초기화하고  있으면 findNumber에서 1을 뺀다.
+        val eslOrderNumber = findNumber?.minus(1) ?: 4
 
         // 주문 생성
         val order = orderRepository.save(
@@ -52,7 +56,10 @@ class OrderService(
 //        order.orderMenu = orderMenus
 
         // 주문된 영수증 이미지를 esl에 전송한다.
-        return solumClient.pushLabelImage(labelCode = "085C1B40E1DD", elsImage = request.eslImage)
+        val labelCode = eslOrderRepository.findByOrderNumber(eslOrderNumber.toLong())?.labelCode
+            ?: throw Exception("eslOrder가 존재하지 않습니다.")
+
+        return solumClient.pushLabelImage(labelCode = labelCode, elsImage = request.eslImage)
     }
 
     fun getOrders(): Iterable<Order> {

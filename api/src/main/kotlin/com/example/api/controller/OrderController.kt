@@ -24,9 +24,9 @@ class OrderController(
     }
 
     @Operation(description = "주문 완료")
-    @PostMapping("/complete/{buttonEslOrderNumber}")
-    fun completeOrder(@PathVariable buttonEslOrderNumber: Int): EmptyResponse {
-        completeOrderService.completeOrder(buttonEslOrderNumber)
+    @PostMapping("/complete/{eslOrderNumber}")
+    fun completeOrder(@PathVariable eslOrderNumber: Int): EmptyResponse {
+        completeOrderService.completeOrder(eslOrderNumber)
         return EmptyResponse
     }
 
