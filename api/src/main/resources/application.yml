@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: //
-    username: //
-    password: //
+    url: jdbc:mysql://junction-dev.cqbwanh7lnnf.ap-northeast-2.rds.amazonaws.com:3306/hyva?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: junction123
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
