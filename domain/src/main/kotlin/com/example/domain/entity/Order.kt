@@ -5,7 +5,6 @@ import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
-import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 import java.time.LocalDateTime
 
@@ -16,9 +15,6 @@ class Order(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
     var id: Long? = null,
-
-    @OneToMany(mappedBy = "order")
-    var orderMenu: MutableList<OrderMenu> = mutableListOf(),
 
     @Column(name = "tableNumber")
     var tableNumber: Int,
@@ -36,7 +32,7 @@ class Order(
     var totalPrice: Int? = 0,
 
     @Column(name = "eslOrderNumber")
-    var eslOrderNumber: Int,
+    var eslOrderNumber: Int = 0,
 ) : BaseEntity() {
     fun complete() {
         this.done = true

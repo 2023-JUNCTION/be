@@ -32,5 +32,7 @@ class CompleteOrderService(
         eslOrders.forEachIndexed { index, eslOrder ->
             solumClient.pushLabelImage(eslOrder.labelCode, images[index])
         }
+
+        orderRepository.saveAll(orders)
     }
 }
