@@ -18,6 +18,10 @@ openai:
     url: https://api.openai.com/v1/chat/completions
     key: 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
 
+solum:
+  api:
+    url: https://stage00.common.solumesl.com
+
 springdoc:
   packages-to-scan: com.example.api
   default-consumes-media-type: application/json;charset=UTF-8
