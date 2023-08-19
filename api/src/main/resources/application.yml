@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: //
-#    username: //
-#    password: //
+    url: //
+    username: //
+    password: //
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
