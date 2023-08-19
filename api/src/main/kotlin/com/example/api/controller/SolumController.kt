@@ -46,4 +46,14 @@ class SolumController(
         eslOrderService.deleteEslOrder(id)
         return EmptyResponse
     }
+
+    // GET
+// /api/v2/common/labels
+// Get Label Information Including Status
+
+// alarm 상태 확인
+
+// 모든 esl의 labelCode를 조회한다.
+
+// 모든 esl의 상태 확인
 }

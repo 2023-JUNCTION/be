@@ -34,9 +34,16 @@ class Order(
 
     @Column(name = "totalPrice")
     var totalPrice: Int? = 0,
+
+    @Column(name = "eslOrderNumber")
+    var eslOrderNumber: Int,
 ) : BaseEntity() {
     fun complete() {
         this.done = true
         completeAt = LocalDateTime.now()
+    }
+
+    fun moveForward() {
+        eslOrderNumber += 1
     }
 }

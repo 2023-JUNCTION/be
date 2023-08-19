@@ -1,40 +1,36 @@
 package com.example.api.service
 
 import com.example.api.client.SolumClient
-import com.example.api.dto.CompleteOrderRequest
+import com.example.domain.repository.EslOrderRepository
 import com.example.domain.repository.OrderRepository
 import org.springframework.stereotype.Service
 
 @Service
 class CompleteOrderService(
     val orderRepository: OrderRepository,
+    val eslOrderRepository: EslOrderRepository,
     val solumClient: SolumClient,
 ) {
-    // todo
-    // 5초마다 스케줄링 돌려서..(??)
-    // 우리의 esl을 전부 labels alarm 조회 api 호출
-    // status가 true라면.. completeOrder 호출
+    fun completeOrder(buttonEslOrderNumber: Int) {
+        val order = orderRepository.findByEslOrderNumber(buttonEslOrderNumber)
+            ?: throw Exception("주문이 존재하지 않습니다.")
 
-    fun completeOrder(request: CompleteOrderRequest) {
-        val order = orderRepository.findById(request.orderId).get()
-
-        // order 상태를 완료로 변경한다. 시간을 변경한다.
         order.complete()
 
-        // 완료버튼을 눌렀을때 그 esl의 라벨코드가 있을거고 -> 그 esl의 순서를 알아내고 -> 그 다음 순서부터 쭉 땡김
+        // 완료된 주문 esl의 다음 esl의 이미지들을 모두 앞으로 한 칸씩 당겨야 한다
+        val orders = orderRepository.findAllByEslOrderNumberGreaterThan(buttonEslOrderNumber)
 
-        // eslInfo를 통해 완료된 주문의 esl 번호를 알아낸다.
-        // 완료된 주문의 esl의 다음 esl의 이미지들을 모두! 앞으로 한 칸씩 당겨야 한다.
-        // esl 이미지를 쏘는 것은 solum client가 한다.
-        println("order = $order")
+        // buttonEslOrderNumber 보다 큰 .. esl 4, 3, 2, 1, 0 번의 이미지 긁어오기
+        val images = orders.map { it.eslImage }
+
+        // buttonEslOrderNumber 보다 큰 주문들의 eslOrderNumber를 앞으로 한 칸씩 당긴다
+        orders.forEach { it.moveForward() }
+
+        // buttonEslOrderNumber 보다 큰 주문들의 eslLabelCode를 가지고 images에서 pushLabelImage 호출한다.
+        // images 인덱스 순서대로 eslLabelCode를 가지고 pushLabelImage 호출한다.
+        val eslOrders = eslOrderRepository.findAllByOrderNumberGreaterThan(buttonEslOrderNumber.toLong())
+        eslOrders.forEachIndexed { index, eslOrder ->
+            solumClient.pushLabelImage(eslOrder.labelCode, images[index])
+        }
     }
-
-    // todo
-    // 원복
-    // 맨앞으로 간다 ?
-    // 1번 esl의 labelCode = "085C1B40E1DD"
-    // 2번 esl의 labelCode = ".."
-    // 3번 esl의 labelCode = ".."
-
-    // esl 개수 5개 . 이 이상 들어오면
 }

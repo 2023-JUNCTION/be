@@ -22,12 +22,18 @@ class OrderService(
         // 메뉴 찾기
         val menus = menuRepository.findAllById(request.menus.map { it.id })
 
+        // elsOrderNumber 찾기
+        // 현재 주문 상태인 주문들 중에서 가장 큰 elsOrderNumber를 찾는다.
+        // 만약 주문이 없다면 0으로 초기화한다.
+        val eslOrderNumber = orderRepository.findFirstByOrderByEslOrderNumberDesc()?.eslOrderNumber ?: 0
+
         // 주문 생성
         val order = orderRepository.save(
             Order(
                 tableNumber = request.tableNumber,
                 eslImage = request.eslImage,
                 orderMenu = mutableListOf(),
+                eslOrderNumber = eslOrderNumber,
             ),
         )
 

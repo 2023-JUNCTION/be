@@ -5,4 +5,9 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface OrderRepository : CrudRepository<Order, Long>
+interface OrderRepository : CrudRepository<Order, Long> {
+    fun findByEslOrderNumber(orderNumber: Int): Order?
+    fun findAllByEslOrderNumberGreaterThan(orderNumber: Int): List<Order>
+    fun findAllByEslOrderNumberGreaterThanEqual(orderNumber: Int): List<Order>
+    fun findFirstByOrderByEslOrderNumberDesc(): Order?
+}

@@ -1,6 +1,5 @@
 package com.example.api.controller
 
-import com.example.api.dto.CompleteOrderRequest
 import com.example.api.dto.CreateOrderRequest
 import com.example.api.dto.EmptyResponse
 import com.example.api.service.CompleteOrderService
@@ -25,9 +24,9 @@ class OrderController(
     }
 
     @Operation(description = "주문 완료")
-    @PostMapping("/complete")
-    fun completeOrder(@RequestBody request: CompleteOrderRequest): EmptyResponse {
-        completeOrderService.completeOrder(request)
+    @PostMapping("/complete/{buttonEslOrderNumber}")
+    fun completeOrder(@PathVariable buttonEslOrderNumber: Int): EmptyResponse {
+        completeOrderService.completeOrder(buttonEslOrderNumber)
         return EmptyResponse
     }
 
