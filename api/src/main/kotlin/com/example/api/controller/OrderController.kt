@@ -5,6 +5,7 @@ import com.example.api.dto.CreateOrderRequest
 import com.example.api.dto.EmptyResponse
 import com.example.api.service.CompleteOrderService
 import com.example.api.service.OrderService
+import com.example.domain.entity.Order
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.*
@@ -28,5 +29,11 @@ class OrderController(
     fun completeOrder(@RequestBody request: CompleteOrderRequest): EmptyResponse {
         completeOrderService.completeOrder(request)
         return EmptyResponse
+    }
+
+    @Operation(description = "주문 전체 조회")
+    @GetMapping
+    fun getOrders(): Iterable<Order> {
+        return orderService.getOrders()
     }
 }

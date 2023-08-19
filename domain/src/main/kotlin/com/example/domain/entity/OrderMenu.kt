@@ -19,7 +19,7 @@ class OrderMenu(
     var id: Long? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "orderId")
+    @JoinColumn(name = "order_table")
     var order: Order,
 
     @Column(name = "menuId")
