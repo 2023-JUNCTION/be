@@ -3,6 +3,7 @@ package com.example.api.controller
 import com.example.api.dto.CompleteOrderRequest
 import com.example.api.dto.CreateOrderRequest
 import com.example.api.dto.EmptyResponse
+import com.example.api.service.OrderService
 import com.example.api.service.CompleteOrderService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -13,14 +14,13 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/api/orders")
 class OrderController(
-    val completeOrderService: CompleteOrderService,
+  val orderService: OrderService
 ) {
-    @Operation(description = "주문 요청")
-    @PostMapping
-    fun createOrders(@RequestBody request: CreateOrderRequest): EmptyResponse {
-        println(request)
-        return EmptyResponse
-    }
+  @Operation(description = "주문 요청")
+  @PostMapping
+  fun createOrders(@RequestBody request: CreateOrderRequest): Object? {
+    return orderService.createOrders(request)
+  }
 
     @Operation(description = "주문 완료")
     @PostMapping("/complete")
