@@ -6,8 +6,20 @@ plugins {
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
     kotlin("plugin.jpa") version "1.8.22"
+    kotlin("kapt")version "1.8.22"
 }
 
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.Embeddable")
+}
+
+noArg {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.Embeddable")
+}
 configurations {
     compileOnly {
         extendsFrom(configurations.annotationProcessor.get())
@@ -26,6 +38,7 @@ allprojects {
 subprojects {
     apply(plugin = "kotlin")
     apply(plugin = "kotlin-spring")
+    apply(plugin = "kotlin-jpa")
     apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
 

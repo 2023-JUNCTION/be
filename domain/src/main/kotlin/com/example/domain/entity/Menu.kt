@@ -13,11 +13,17 @@ class Menu(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
-    var id: Long,
+    var id: Long? = null,
 
     @Column(name = "menuName")
     var menuName: String,
 
     @Column(name = "menuPrice")
     var menuPrice: Int,
+
+    @Column(name = "description")
+    var description: String? = null,
+
+    @Column(name = "imageUrl")
+    var imageUrl: String? = null,
 )
