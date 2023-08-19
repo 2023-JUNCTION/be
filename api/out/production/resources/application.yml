@@ -1,0 +1,20 @@
+openai:
+  model: gpt-3.5-turbo
+  api:
+    organization: org-pD5CrdVGC331XKSlrYe3DUoK
+    url: https://api.openai.com/v1/chat/completions
+    key: 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
+
+springdoc:
+  packages-to-scan: com.example.api
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
+  swagger-ui:
+    path: /
+    disable-swagger-default-url: true
+    display-request-duration: true
+    operations-sorter: alpha
+
+logging:
+  level:
+    org.springframework: DEBUG

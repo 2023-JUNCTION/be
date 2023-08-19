@@ -1,0 +1,8 @@
+### /
+http://localhost:8080
+
+### 헬스체크
+http://localhost:8080/healthCheck
+
+### 챗봇
+http://localhost:8080/chat?prompt=안녕하세요를일본어로하면?
