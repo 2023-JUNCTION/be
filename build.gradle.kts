@@ -6,7 +6,8 @@ plugins {
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
     kotlin("plugin.jpa") version "1.8.22"
-    kotlin("kapt")version "1.8.22"
+    kotlin("kapt") version "1.8.22"
+    id("org.jlleitschuh.gradle.ktlint") version "11.5.0"
 }
 
 allOpen {
@@ -41,6 +42,7 @@ subprojects {
     apply(plugin = "kotlin-jpa")
     apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
     java.sourceCompatibility = JavaVersion.VERSION_17
 
