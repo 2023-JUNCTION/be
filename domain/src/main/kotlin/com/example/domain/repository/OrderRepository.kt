@@ -9,4 +9,5 @@ interface OrderRepository : CrudRepository<Order, Long> {
     fun findFirstByDoneFalseAndEslOrderNumberOrderByCreateAtDesc(orderNumber: Int): Order?
     fun findFirstByDoneFalseOrderByEslOrderNumberAsc(): Order?
     fun findAllByDoneFalseAndEslOrderNumberLessThanEqual(orderNumber: Int): List<Order>
+    fun findAllByDoneFalse(): List<Order>
 }
