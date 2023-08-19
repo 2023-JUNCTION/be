@@ -16,13 +16,13 @@ class SolumClient {
     @Value("\${solum.api.url}")
     lateinit var baseUrl: String
 
-  fun getVersion(): Object? {
-    return restTemplate.getForObject("$baseUrl/version", Object::class.java)
-  }
+    fun getVersion(): Any? {
+        return restTemplate.getForObject("$baseUrl/version", Object::class.java)
+    }
 
-  fun pushLabelImage(labelCode: String, elsImage: String): Object? {
-    val request = PushSolumImageRequest(labelCode = labelCode, image = elsImage, page =1, frontPage = 1, articleList = listOf())
+    fun pushLabelImage(labelCode: String, elsImage: String): Any? {
+        val request = PushSolumImageRequest(labelCode = labelCode, image = elsImage, page = 1, frontPage = 1, articleList = listOf())
 
-    return restTemplate.postForObject("$baseUrl/labels/image?company=JC08&store=1111", request, Object::class.java)
-  }
+        return restTemplate.postForObject("$baseUrl/labels/image?company=JC08&store=1111", request, Object::class.java)
+    }
 }

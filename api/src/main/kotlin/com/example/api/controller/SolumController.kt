@@ -14,7 +14,7 @@ class SolumController(
 ) {
     @Operation(description = "solum 버전 확인")
     @GetMapping("/version")
-    fun createOrders(): Object? {
+    fun createOrders(): Any? {
         return solumClient.getVersion()
     }
 

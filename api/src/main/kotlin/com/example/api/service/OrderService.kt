@@ -18,7 +18,7 @@ class OrderService(
     val solumClient: SolumClient,
 ) {
     @Transactional
-    fun createOrders(request: CreateOrderRequest): Object? {
+    fun createOrders(request: CreateOrderRequest): Any? {
         // 메뉴 찾기
         val menus = menuRepository.findAllById(request.menus.map { it.id })
 

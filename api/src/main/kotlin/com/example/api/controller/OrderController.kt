@@ -19,7 +19,7 @@ class OrderController(
 ) {
     @Operation(description = "주문 요청")
     @PostMapping
-    fun createOrders(@RequestBody request: CreateOrderRequest): Object? {
+    fun createOrders(@RequestBody request: CreateOrderRequest): Any? {
         return orderService.createOrders(request)
     }
 
