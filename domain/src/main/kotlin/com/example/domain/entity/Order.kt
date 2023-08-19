@@ -23,7 +23,7 @@ class Order(
     @Column(name = "tableNumber")
     var tableNumber: Int,
 
-    @Column(name = "eslImage")
+    @Column(name = "eslImage", columnDefinition = "blob")
     var eslImage: String,
 
     @Column(name = "done")
