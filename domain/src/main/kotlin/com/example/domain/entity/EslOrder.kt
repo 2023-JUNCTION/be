@@ -15,7 +15,7 @@ class EslOrder(
     @Column(name = "id", updatable = false)
     var id: Long? = null,
 
-    @Column(name = "orderName")
+    @Column(name = "orderNumber")
     var orderNumber: Long,
 
     @Column(name = "labelCode")
