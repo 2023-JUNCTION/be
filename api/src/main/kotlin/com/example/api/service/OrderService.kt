@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service
 
 @Service
 class OrderService(
-  val solumClient: SolumClient
+    val solumClient: SolumClient,
 ) {
-  fun createOrders(request: CreateOrderRequest): Object? {
-    return solumClient.pushLabelImage(labelCode = "085C1B40E1DD", elsImage = request.elsImage)
-  }
+    fun createOrders(request: CreateOrderRequest): Object? {
+        return solumClient.pushLabelImage(labelCode = "085C1B40E1DD", elsImage = request.eslImage)
+    }
 }

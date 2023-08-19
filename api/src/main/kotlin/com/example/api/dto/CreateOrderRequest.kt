@@ -1,11 +1,11 @@
 package com.example.api.dto
 
 data class CreateOrderRequest(
-    val orders: List<OrderDto>,
-    val elsImage: String,
+    val menus: List<MenuDto>,
+    val eslImage: String,
 )
 
-class OrderDto(
+class MenuDto(
     val id: Long,
     val count: Int,
 )
