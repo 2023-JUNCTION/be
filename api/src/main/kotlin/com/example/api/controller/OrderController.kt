@@ -2,6 +2,7 @@ package com.example.api.controller
 
 import com.example.api.dto.CreateOrderRequest
 import com.example.api.dto.EmptyResponse
+import com.example.api.dto.ReadOrdersResponse
 import com.example.api.service.CompleteOrderService
 import com.example.api.service.OrderService
 import com.example.domain.entity.Order
@@ -32,7 +33,7 @@ class OrderController(
 
     @Operation(description = "주문 전체 조회")
     @GetMapping
-    fun getOrders(): Iterable<Order> {
+    fun getOrders(): ReadOrdersResponse {
         return orderService.getOrders()
     }
 }
