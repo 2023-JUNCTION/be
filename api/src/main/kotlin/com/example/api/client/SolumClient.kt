@@ -8,14 +8,14 @@ import org.springframework.web.client.RestTemplate
 
 @Component
 class SolumClient {
-  @Qualifier("solumRestTemplate")
-  @Autowired
-  lateinit var restTemplate: RestTemplate
+    @Qualifier("solumRestTemplate")
+    @Autowired
+    lateinit var restTemplate: RestTemplate
 
-  @Value("\${solum.api.url}")
-  lateinit var baseUrl: String
+    @Value("\${solum.api.url}")
+    lateinit var baseUrl: String
 
-  fun getVersion(): Object? {
-    return restTemplate.getForObject("$baseUrl/common/api/v2/common/version", Object::class.java)
-  }
+    fun getVersion(): Object? {
+        return restTemplate.getForObject("$baseUrl/common/api/v2/common/version", Object::class.java)
+    }
 }

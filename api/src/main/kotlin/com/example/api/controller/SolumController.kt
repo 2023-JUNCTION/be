@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/api/solum")
 class SolumController(
-  val solumClient: SolumClient
+    val solumClient: SolumClient,
 ) {
-  @Operation(description = "solum 버전 확인")
-  @GetMapping("/version")
-  fun createOrders(): Object? {
-    return solumClient.getVersion()
-  }
+    @Operation(description = "solum 버전 확인")
+    @GetMapping("/version")
+    fun createOrders(): Object? {
+        return solumClient.getVersion()
+    }
 }

@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/api/orders")
 class OrderController {
-  @Operation(description = "주문 요청")
-  @PostMapping
-  fun createOrders(@RequestBody request: CreateOrderRequest): EmptyResponse {
-    println(request)
-    return EmptyResponse
-  }
+    @Operation(description = "주문 요청")
+    @PostMapping
+    fun createOrders(@RequestBody request: CreateOrderRequest): EmptyResponse {
+        println(request)
+        return EmptyResponse
+    }
 }
