@@ -30,7 +30,7 @@ class OrderService(
         // elsOrderNumber 찾기
         // 현재 주문 상태인 주문들 중에서 가장 작은 (가장 오른쪽) elsOrderNumber를 찾는다.
         // 만약 주문이 없다면 4로 초기화한다.
-        val findNumber = orderRepository.findFirstByDoneFalseOrderByEslOrderNumberAsc()?.eslOrderNumber
+        val findNumber = orderRepository.findFirstByDoneFalseAndEslOrderNumberGreaterThanOrderByEslOrderNumberAsc(0)?.eslOrderNumber
         // findNumber가 없으면 4로 초기화하고  있으면 findNumber에서 1을 뺀다.
         val eslOrderNumber = findNumber?.minus(1) ?: 4
 

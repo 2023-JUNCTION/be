@@ -3,7 +3,7 @@ package com.example.api.dto
 data class CreateOrderRequest(
     val tableNumber: Int = 1,
     val menus: List<MenuDto>,
-    val eslImage: String, // 영수증 이미지
+    var eslImage: String, // 영수증 이미지
 )
 
 class MenuDto(

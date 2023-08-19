@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository
 @Repository
 interface OrderRepository : CrudRepository<Order, Long> {
     fun findFirstByDoneFalseAndEslOrderNumberOrderByCreateAtDesc(orderNumber: Int): Order?
-    fun findFirstByDoneFalseOrderByEslOrderNumberAsc(): Order?
+    fun findFirstByDoneFalseAndEslOrderNumberGreaterThanOrderByEslOrderNumberAsc(eslOrderNumber: Int): Order?
     fun findAllByDoneFalseAndEslOrderNumberLessThanEqual(orderNumber: Int): List<Order>
     fun findAllByDoneFalse(): List<Order>
 }
