@@ -1,10 +1,10 @@
 package com.example.api.dto
 
 data class ReadOrdersResponse(
-    val orders: List<OrderResponse>
+    val orders: List<ReadOrderResponse>
 )
 
-data class OrderResponse(
+data class ReadOrderResponse(
   val id: Long,
   val orderMenu: List<OrderMenuResponse>,
   val done: Boolean,

@@ -3,7 +3,7 @@ package com.example.api.service
 import com.example.api.client.SolumClient
 import com.example.api.dto.CreateOrderRequest
 import com.example.api.dto.OrderMenuResponse
-import com.example.api.dto.OrderResponse
+import com.example.api.dto.ReadOrderResponse
 import com.example.api.dto.ReadOrdersResponse
 import com.example.domain.entity.Order
 import com.example.domain.repository.EslOrderRepository
@@ -70,7 +70,7 @@ class OrderService(
 
         return ReadOrdersResponse(
             orders = orders.map {
-                OrderResponse(
+                ReadOrderResponse(
                     id = it.id!!,
                     orderMenu = it.orderMenu.map { orderMenu ->
                         OrderMenuResponse(
