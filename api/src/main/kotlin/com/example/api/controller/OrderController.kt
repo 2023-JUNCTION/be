@@ -26,7 +26,7 @@ class OrderController(
     @Operation(description = "주문 완료")
     @PostMapping("/complete")
     fun completeOrder(@RequestBody request: CompleteOrderRequest): EmptyResponse {
-        completeOrderService.completeOrder()
+        completeOrderService.completeOrder(request)
         return EmptyResponse
     }
 }

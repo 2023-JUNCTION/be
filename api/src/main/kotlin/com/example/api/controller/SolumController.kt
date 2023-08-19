@@ -17,4 +17,6 @@ class SolumController(
     fun createOrders(): Object? {
         return solumClient.getVersion()
     }
+
+    // alarm 상태 확인
 }
