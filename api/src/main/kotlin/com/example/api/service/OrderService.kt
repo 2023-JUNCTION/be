@@ -47,7 +47,7 @@ class OrderService(
         order.orderMenu = orderMenus
 
         // 주문된 영수증 이미지를 esl에 전송한다.
-        return solumClient.pushLabelImage(labelCode = "03ADA7DBB39E", elsImage = request.eslImage)
+        return solumClient.pushLabelImage(labelCode = "085C1B40E1DD", elsImage = request.eslImage)
     }
 
     fun getOrders(): Iterable<Order> {
