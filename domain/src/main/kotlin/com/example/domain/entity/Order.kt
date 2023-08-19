@@ -23,7 +23,7 @@ class Order(
     var eslImage: String,
 
     @Column(name = "done")
-    var done: Boolean? = false,
+    var done: Boolean = false,
 
     @Column(name = "type")
     var type: String? = null,

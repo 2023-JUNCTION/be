@@ -2,6 +2,9 @@ package com.example.api.service
 
 import com.example.api.client.SolumClient
 import com.example.api.dto.CreateOrderRequest
+import com.example.api.dto.OrderMenuResponse
+import com.example.api.dto.OrderResponse
+import com.example.api.dto.ReadOrdersResponse
 import com.example.domain.entity.Order
 import com.example.domain.repository.EslOrderRepository
 // import com.example.domain.entity.OrderMenu
@@ -62,7 +65,24 @@ class OrderService(
         return solumClient.pushLabelImage(labelCode = labelCode, elsImage = request.eslImage)
     }
 
-    fun getOrders(): Iterable<Order> {
-        return orderRepository.findAll()
+    fun getOrders(): ReadOrdersResponse {
+        val orders =  orderRepository.findAll()
+
+        return ReadOrdersResponse(
+            orders = orders.map {
+                OrderResponse(
+                    id = it.id!!,
+                    orderMenu = it.orderMenu.map { orderMenu ->
+                        OrderMenuResponse(
+                            id = orderMenu.id!!,
+                            menuId = orderMenu.menuId,
+                            menuName = orderMenu.menuName,
+                            menuCount = orderMenu.menuCount,
+                        )
+                    },
+                    done = it.done,
+                )
+            }
+        )
     }
 }
