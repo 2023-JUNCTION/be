@@ -21,5 +21,16 @@ ENV TZ=Asia/Seoul
 EXPOSE 8080
 USER nobody
 
+ARG RDS_HOST
+ARG RDS_USERNAME
+ARG RDS_PW
+
+ENV ENV_RDS_HOST=${RDS_HOST}
+ENV ENV_RDS_USERNAME=${RDS_USERNAME}
+ENV ENV_RDS_PW=${RDS_PW}
+
 ENTRYPOINT java -jar \
+  -Dspring.datasource.url=${ENV_RDS_HOST}
+  -Dspring.datasource.username=${ENV_RDS_USERNAME}
+  -Dspring.datasource.password=${ENV_RDS_PW}
   /app/*.jar
