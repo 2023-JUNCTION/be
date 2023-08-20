@@ -20,7 +20,7 @@ openai:
 
 solum:
   api:
-    url: https://stage00.common.solumesl.com/common/api/v2/common
+    url: https://stage00.common.solumesl.com/common/api
 
 springdoc:
   packages-to-scan: com.example.api

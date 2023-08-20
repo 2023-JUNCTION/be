@@ -1,6 +1,7 @@
 package com.example.api.controller
 
 import com.example.api.client.SolumClient
+import com.example.api.dto.Color
 import com.example.api.dto.CreateEslOrderRequest
 import com.example.api.dto.EmptyResponse
 import com.example.api.service.EslOrderService
@@ -47,6 +48,18 @@ class SolumController(
         return EmptyResponse
     }
 
+    @Operation(description = "esl led 푸시 (지속 시간 10s)")
+    @PostMapping("/esl-led/{labelCode}")
+    fun pushEslLed(@PathVariable labelCode: String, @RequestParam color: Color): Any? {
+        return solumClient.pushLed(labelCode, color)
+    }
+
+//    @Operation(description = "esl 이미지 새로고침")
+//    @GetMapping("/esl-image")
+//    fun refreshEslImage(): EmptyResponse {
+//        solumClient.refreshEslImage()
+//        return EmptyResponse
+//    }
     // GET
 // /api/v2/common/labels
 // Get Label Information Including Status
