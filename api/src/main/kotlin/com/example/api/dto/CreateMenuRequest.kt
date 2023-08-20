@@ -5,4 +5,5 @@ class CreateMenuRequest(
     val menuPrice: Int,
     val description: String? = null,
     val imageUrl: String? = null,
+    val requiredTime: Long
 )

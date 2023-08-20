@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
+import java.time.LocalDateTime
 
 @Table(name = "menu")
 @Entity
@@ -26,4 +27,7 @@ class Menu(
 
     @Column(name = "imageUrl")
     var imageUrl: String? = null,
+
+    @Column(name = "requiredTime")
+    var requiredTime: Long // 소요시간을 초 단위로 저장
 )

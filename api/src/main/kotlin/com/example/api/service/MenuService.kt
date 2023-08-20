@@ -15,6 +15,7 @@ class MenuService(
             menuPrice = request.menuPrice,
             description = request.description,
             imageUrl = request.imageUrl,
+            requiredTime = request.requiredTime,
         )
         return menuRepository.save(menu)
     }
@@ -26,6 +27,7 @@ class MenuService(
             menuPrice = request.menuPrice,
             description = request.description,
             imageUrl = request.imageUrl,
+            requiredTime = request.requiredTime,
         )
         return menuRepository.save(menu)
     }

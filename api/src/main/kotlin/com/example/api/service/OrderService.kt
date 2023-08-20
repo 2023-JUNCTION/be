@@ -13,6 +13,7 @@ import com.example.domain.repository.OrderMenuRepository
 import com.example.domain.repository.OrderRepository
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
+import kotlin.time.Duration
 
 @Service
 class OrderService(
@@ -22,6 +23,14 @@ class OrderService(
     val eslOrderRepository: EslOrderRepository,
     val solumClient: SolumClient,
 ) {
+    lateinit var menuTimeMap: Map<Long, Long>
+
+    init {
+        val menu = menuRepository.findAll()
+        menuTimeMap = menu.associate { it.id!! to it.requiredTime }
+    }
+
+
     @Transactional
     fun createOrders(request: CreateOrderRequest): Any? {
         // 메뉴 찾기
@@ -80,6 +89,7 @@ class OrderService(
                             menuCount = orderMenu.menuCount,
                         )
                     },
+                    requiredTime = it.orderMenu.map { Math.multiplyExact(menuTimeMap[it.menuId]!!, it.menuCount) }.sum(),
                     done = it.done,
                     eslOrderNumber = it.eslOrderNumber,
                 )
@@ -102,6 +112,7 @@ class OrderService(
                             menuCount = orderMenu.menuCount,
                         )
                     },
+                    requiredTime = it.orderMenu.map { Math.multiplyExact(menuTimeMap[it.menuId]!!, it.menuCount) }.sum(),
                     done = it.done,
                     eslOrderNumber = it.eslOrderNumber,
                 )
