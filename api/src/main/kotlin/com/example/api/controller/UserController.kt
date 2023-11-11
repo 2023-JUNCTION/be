@@ -117,7 +117,7 @@ class UserController(
         )
 
         val npc1 = User(
-            nickname = "npc1",
+            nickname = " ",
             coordinate = coordinate1,
             movement = MovementStatus.STAND,
             missionStatus = false,
@@ -127,7 +127,7 @@ class UserController(
             userIdForNpc = userId
         )
         val npc2 = User(
-            nickname = "npc2",
+            nickname = " ",
             coordinate = coordinate2,
             movement = MovementStatus.SIT,
             missionStatus = false,
@@ -137,7 +137,7 @@ class UserController(
             userIdForNpc = userId
         )
         val npc3 = User(
-            nickname = "npc3",
+            nickname = " ",
             coordinate = coordinate3,
             movement = MovementStatus.WALK,
             missionStatus = false,
@@ -147,7 +147,7 @@ class UserController(
             userIdForNpc = userId
         )
         val npc4 = User(
-            nickname = "npc4",
+            nickname = " ",
             coordinate = coordinate4,
             movement = MovementStatus.SIT,
             missionStatus = false,
@@ -157,7 +157,7 @@ class UserController(
             userIdForNpc = userId
         )
         val npc5 = User(
-            nickname = "npc5",
+            nickname = " ",
             coordinate = coordinate5,
             movement = MovementStatus.STAND,
             missionStatus = false,
@@ -216,8 +216,7 @@ class UserController(
             missionStatus = savedUser.missionStatus,
             teases = savedUser.teases.map { it.toDto() },
             connectedUserId = savedUser.connectedUserId,
-            npc = savedUser.npc,
-            userIdForNpc = savedUser.userIdForNpc
+            npcList = userRepository.findAllByNpcAndUserIdForNpc(true, savedUser.id)
         )
     }
 }
@@ -241,8 +240,7 @@ data class UpdateUserResponse(
     val missionStatus: Boolean,
     val teases: List<TeaseDto>,
     val connectedUserId: Long?,
-    val npc: Boolean,
-    val userIdForNpc: Long?
+    val npcList: List<User>,
 )
 
 data class CoordinateDto(

@@ -11,4 +11,7 @@ GET http://localhost:8080/admin/user-all-tease?userId=1
 DELETE http://localhost:8080/admin/user-all-tease?userId=1
 
 ### 특정 유저와 해당 유저의 전체 npc들의 상태 조회
-GET http://localhost:8080/admin/user-npc-status?userId=1
+GET http://localhost:8080/admin/user-npc-status?userId=7
+
+### 특정 유저와 해당 유저의 전체 npc들의 상태 조회
+GET https://hyva.life/admin/user-npc-status?userId=7

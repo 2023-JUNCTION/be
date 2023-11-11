@@ -10,11 +10,11 @@ DELETE http://localhost:8080/1/mission/2
 ### 4. 이제 다른 사람들 놀릴 차례.. 지도 최초 화면 ??
 
 ### 5. 내 움직임 서버에 반영
-POST http://localhost:8080/status
+POST http://localhost:8080/user/status
 Content-Type: application/json
 
 {
-  "userId": 1,
+  "userId": 7,
   "coordinate": {
     "latitude": 60.162875353051994,
     "longitude": 24.905401468309808
@@ -23,11 +23,11 @@ Content-Type: application/json
 }
 
 ### 6... 내 움직임 서버에 반영
-POST http://localhost:8080/status
+POST http://localhost:8080/user/status
 Content-Type: application/json
 
 {
-  "userId": 1,
+  "userId": 7,
   "coordinate": {
     "latitude": 60.162875353051994,
     "longitude": 24.905401468309808
