@@ -17,5 +17,5 @@ abstract class BaseEntity {
 
     @LastModifiedDate
     @Column(nullable = false)
-    var completeAt: LocalDateTime = LocalDateTime.MIN
+    var updateAt: LocalDateTime = LocalDateTime.MIN
 }
