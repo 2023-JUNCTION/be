@@ -59,12 +59,12 @@ class AdminController(
         )
     }
 
-    @Operation(description = "테스트용 더미 데이터 생성")
-    @PostMapping("/admin/create-dummy-data")
-    fun createDummyData(): ResultResponse {
-        userController.createUser()
-        userController.createUser()
-        userController.createUser()
-        return ResultResponse(true)
-    }
+//    @Operation(description = "테스트용 더미 데이터 생성")
+//    @PostMapping("/admin/create-dummy-data")
+//    fun createDummyData(): ResultResponse {
+//        userController.createUser(0.0,)
+//        userController.createUser()
+//        userController.createUser()
+//        return ResultResponse(true)
+//    }
 }

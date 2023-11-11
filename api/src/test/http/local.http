@@ -8,10 +8,32 @@ http://localhost:8080/healthCheck
 http://localhost:8080/chat?prompt=안녕하세요를일본어로하면?
 
 ### 로그인
-POST http://localhost:8080
+POST http://localhost:8080/user?latitude=60.162875353051994&longitude=24.905401468309808
+
+### 유저 상태 업데이트
+POST http://localhost:8080/status
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "coordinate": {
+    "latitude": 60.162875353051994,
+    "longitude": 24.905401468309808
+  },
+  "movement": "WALK"
+}
 
 ### 미션 시작
 POST http://localhost:8080/2/mission/2
 
 ### 미션 종료
 DELETE http://localhost:8080/2/mission/2
+
+### Tease 하기
+POST http://localhost:8080/tease
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "npcId": 2
+}

@@ -1,5 +1,6 @@
 package com.example.domain.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import org.springframework.boot.autoconfigure.domain.EntityScan
 
@@ -18,6 +19,7 @@ class Tease(
     @Column(name = "mission")
     var mission: Mission? = null,
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     var user: User? = null,
