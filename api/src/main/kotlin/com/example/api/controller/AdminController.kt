@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @CrossOrigin(origins = ["*"])
-@Tag(name = "Admin API", description = "")
+@Tag(name = "Admin API", description = "어드민, 데모, 관리 등")
 class AdminController(
     private val userRepository: UserRepository,
     private val coordinateRepository: CoordinateRepository,

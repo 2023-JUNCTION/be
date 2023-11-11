@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @CrossOrigin(origins = ["*"])
-@Tag(name = "", description = "")
+@Tag(name = "미션 API", description = "Tease의 미션 관련")
 class MissionController(
     private val userRepository: UserRepository,
     private val coordinateRepository: CoordinateRepository,

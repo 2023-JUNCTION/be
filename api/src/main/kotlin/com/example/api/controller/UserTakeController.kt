@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @CrossOrigin(origins = ["*"])
-@Tag(name = "Take API", description = "")
+@Tag(name = "Take API", description = "Take that person out!")
 class UserTakeController(
     private val userRepository: UserRepository,
     private val coordinateRepository: CoordinateRepository,
@@ -40,7 +40,7 @@ class UserTakeController(
         return ResultResponse(true)
     }
 
-    @Operation(description = "[데모용] 유저가 npc 하나 선택해서 Take 완료")
+    @Operation(description = "[데모용] 유저가 npc 하나 선택해서 Take 완료 (만나서 하이파이브🖐)")
     @DeleteMapping("/take")
     fun done(@RequestBody request: TakeRequest): ResultResponse {
         val userId = request.userId

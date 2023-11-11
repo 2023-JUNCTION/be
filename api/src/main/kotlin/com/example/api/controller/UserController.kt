@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @CrossOrigin(origins = ["*"])
-@Tag(name = "", description = "")
+@Tag(name = "유저 API", description = "로그인, 상태 등 유저 관련")
 class UserController(
     private val userRepository: UserRepository,
     private val coordinateRepository: CoordinateRepository,

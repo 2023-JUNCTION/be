@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @CrossOrigin(origins = ["*"])
-@Tag(name = "Tease API", description = "")
+@Tag(name = "Tease API", description = "How to tease friends...")
 class UserTeaseController(
     private val userRepository: UserRepository,
     private val coordinateRepository: CoordinateRepository,
@@ -45,7 +45,7 @@ class UserTeaseController(
         return ResultResponse(true)
     }
 
-    @Operation(description = "특정 Tease 삭제")
+    @Operation(description = "특정 Tease 삭제 (Tease가 만료되거나 유저가 직접 취소하거나..)")
     @DeleteMapping("/tease/{teaseId}")
     fun delete(@PathVariable teaseId: Long): ResultResponse {
         teaseRepository.deleteById(teaseId)
