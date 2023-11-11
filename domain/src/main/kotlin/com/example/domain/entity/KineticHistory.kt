@@ -14,6 +14,16 @@ class KineticHistory: BaseEntity() {
   var userId: Long = 0
   @Column(name = "status")
   lateinit var status: MovementStatus
+
+  companion object {
+    fun of(
+      userId: Long,
+      status: MovementStatus
+    ) = KineticHistory().apply {
+      this.userId = userId
+      this.status = status
+    }
+  }
 }
 
 enum class MovementStatus {

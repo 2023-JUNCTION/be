@@ -5,4 +5,6 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface KineticHistoryRepository : CrudRepository<KineticHistory, Long>
+interface KineticHistoryRepository : CrudRepository<KineticHistory, Long> {
+    fun findAllByUserId(userId: Long): List<KineticHistory>
+}
