@@ -6,14 +6,11 @@ import com.example.domain.repository.TeaseRepository
 import com.example.domain.repository.UserRepository
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @CrossOrigin(origins = ["*"])
+@RequestMapping("/take")
 @Tag(name = "Take API", description = "Take that person out!")
 class UserTakeController(
     private val userRepository: UserRepository,
@@ -21,7 +18,7 @@ class UserTakeController(
     private val teaseRepository: TeaseRepository
 ) {
     @Operation(description = "[데모용] 유저가 npc 하나 선택해서 Take 요청")
-    @PostMapping("/take")
+    @PostMapping
     fun request(@RequestBody request: TakeRequest): ResultResponse {
         val userId = request.userId
         val npcId = request.npcId
@@ -41,7 +38,7 @@ class UserTakeController(
     }
 
     @Operation(description = "[데모용] 유저가 npc 하나 선택해서 Take 완료 (만나서 하이파이브🖐)")
-    @DeleteMapping("/take")
+    @DeleteMapping
     fun done(@RequestBody request: TakeRequest): ResultResponse {
         val userId = request.userId
         val npcId = request.npcId
