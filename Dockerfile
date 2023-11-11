@@ -29,6 +29,6 @@ ENV ENV_DB_PASSWORD=${DB_PASSWORD}
 
 ENTRYPOINT java -jar \
   -Dspring.profiles.active=${ENV_PHASE:-sandbox} \
-  -Dspring.datasource.url="jdbc:mysql://${ENV_DB_HOST}:3306?serverTimezone=Asia/Seoul&characterEncoding=UTF-8" \
-  -Dspring.datasource.password=${ENV_DB_PASSWORD} \
+#  -Dspring.datasource.url="jdbc:mysql://${ENV_DB_HOST}:3306?serverTimezone=Asia/Seoul&characterEncoding=UTF-8" \
+#  -Dspring.datasource.password=${ENV_DB_PASSWORD} \
   /app/*.jar
