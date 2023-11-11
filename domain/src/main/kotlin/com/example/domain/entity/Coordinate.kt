@@ -1,7 +1,9 @@
 package com.example.domain.entity
 
 import jakarta.persistence.*
+import org.springframework.boot.autoconfigure.domain.EntityScan
 
+@EntityScan
 @Entity
 class Coordinate {
     @Id

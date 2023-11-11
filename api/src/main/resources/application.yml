@@ -1,14 +1,14 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url:
+    url: jdbc:mysql://hyva.cqbwanh7lnnf.ap-northeast-2.rds.amazonaws.com:3306/hyva?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
-    password:
+    password: Junction555
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
     generate-ddl: true
 
 openai:

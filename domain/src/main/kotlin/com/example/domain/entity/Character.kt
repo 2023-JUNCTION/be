@@ -1,10 +1,12 @@
 package com.example.domain.entity
 
 import jakarta.persistence.*
+import org.springframework.boot.autoconfigure.domain.EntityScan
 
+@EntityScan
 @Entity
 @Table(name = "character_table")
-abstract class Character: BaseEntity() {
+class Character: BaseEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "character_id", nullable = false)

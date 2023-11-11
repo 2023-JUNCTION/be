@@ -2,7 +2,9 @@ package com.example.domain.entity
 
 import com.example.domain.entity.Character
 import jakarta.persistence.*
+import org.springframework.boot.autoconfigure.domain.EntityScan
 
+@EntityScan
 @Entity
 class Tease: BaseEntity() {
   @Id
