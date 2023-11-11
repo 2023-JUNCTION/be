@@ -1,6 +1,5 @@
 package com.example.domain.entity
 
-import com.example.domain.entity.Character
 import jakarta.persistence.*
 import org.springframework.boot.autoconfigure.domain.EntityScan
 
@@ -12,11 +11,11 @@ class Tease: BaseEntity() {
   @Column(name = "tease_id", nullable = false)
   var id: Long = 0
 
-  @Column(name = "from")
-  var from: String = ""
+  @Column(name = "from_user")
+  var from: Long = 0
 
-  @Column(name = "to")
-  var to: String = ""
+  @Column(name = "to_user")
+  var to: Long = 0
 
   @Column(name = "message")
   var message: String? = null
@@ -25,8 +24,8 @@ class Tease: BaseEntity() {
   var mission: Mission? = null
 
   @ManyToOne
-  @JoinColumn(name = "character_id")
-  lateinit var character: Character
+  @JoinColumn(name = "user_id")
+  lateinit var user: User
     protected set
 }
 
