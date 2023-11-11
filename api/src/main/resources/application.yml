@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://hyva.cqbwanh7lnnf.ap-northeast-2.rds.amazonaws.com:3306/hyva?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url: jdbc:mysql://hyvahyva.cmb0sk90waqo.eu-north-1.rds.amazonaws.com:3306/hyva?serverTimezone=Europe/Helsinki&characterEncoding=UTF-8
     username: root
     password: Junction555
   jpa:
