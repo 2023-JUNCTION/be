@@ -9,13 +9,11 @@ import com.example.domain.repository.KineticHistoryRepository
 import com.example.domain.repository.TeaseRepository
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @CrossOrigin(origins = ["*"])
+@RequestMapping("/user")
 @Tag(name = "유저 API", description = "로그인, 상태 등 유저 관련")
 class UserController(
     private val userRepository: UserRepository,
@@ -24,7 +22,7 @@ class UserController(
     private val kineticHistoryRepository: KineticHistoryRepository
 ) {
     @Operation(description = "게스트 로그인 시 User 생성 (default 데이터 세팅 O)")
-    @PostMapping("/user")
+    @PostMapping
     fun createUser(): CreateUserResponse {
         val initCoordinate = Coordinate(
             latitude = 0.0,
@@ -74,7 +72,7 @@ class UserController(
     }
 
     @Operation(description = "유저 상태 업데이트")
-    @PostMapping("/user/status")
+    @PostMapping("/status")
     fun updateUser(@RequestBody request: UpdateUserRequest): UpdateUserResponse {
         val user = userRepository.findById(request.userId).orElseThrow()
 
