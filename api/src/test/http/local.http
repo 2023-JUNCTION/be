@@ -11,4 +11,7 @@ http://localhost:8080/chat?prompt=안녕하세요를일본어로하면?
 POST http://localhost:8080
 
 ### 미션 시작
-POST http://localhost:8080/1/mission/2
+POST http://localhost:8080/2/mission/2
+
+### 미션 종료
+DELETE http://localhost:8080/2/mission/2

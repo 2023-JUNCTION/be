@@ -5,4 +5,6 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface TeaseRepository : CrudRepository<Tease, Long>
+interface TeaseRepository : CrudRepository<Tease, Long> {
+    fun findAllByUserId(userId: Long): List<Tease>
+}
