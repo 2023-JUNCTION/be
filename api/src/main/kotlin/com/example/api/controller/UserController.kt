@@ -36,7 +36,7 @@ class UserController(
             coordinate = saved,
             movement = MovementStatus.STAND,
             missionStatus = false,
-            teases = null,
+            teases = mutableListOf(),
             connectedUserId = null,
             npc = false,
             userIdForNpc = null
@@ -68,6 +68,8 @@ class UserController(
         return CreateUserResponse(
             id = save.id,
         )
+
+        //? npc 5개 생성하고 응답에 id 값을 포함시켜줘야 한다
     }
 }
 

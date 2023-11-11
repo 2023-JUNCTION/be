@@ -20,7 +20,7 @@ class User(
     var missionStatus: Boolean = false,
 
     @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
-    var teases: MutableList<Tease>? = null,
+    var teases: MutableList<Tease> = mutableListOf(),
 
     @Column(name = "connected_user_id")
     var connectedUserId: Long? = null,

@@ -52,7 +52,7 @@ class MissionController(
 
         // 요청한 유저의 미션 진행 상태를 종료로 만든다
         user.missionStatus = false
-        user.teases = null
+        user.teases = mutableListOf()
 
         // 요청한 유저의 모든 Tease 딱지를 삭제해준다
         val allByUserId = teaseRepository.findAllByUserId(userId)

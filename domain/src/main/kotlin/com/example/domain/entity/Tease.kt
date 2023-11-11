@@ -33,4 +33,6 @@ enum class Mission(
     val title: String
 ) {
     SHAKE_IT("흔들어"),
+    JUMPING_JACK("팔벌려뛰기"),
+    WALK("산책")
 }
