@@ -28,3 +28,12 @@ POST http://localhost:8080/2/mission/2
 
 ### 미션 종료
 DELETE http://localhost:8080/2/mission/2
+
+### Tease 하기
+POST http://localhost:8080/tease
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "npcId": 2
+}

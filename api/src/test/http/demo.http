@@ -1,0 +1,66 @@
+### 1. 특정 좌표에서 게스트 로그인 (유저 생성)
+POST http://localhost:8080/user?latitude=60.162875353051994&longitude=24.905401468309808
+
+### 2. 놀림받는 중.. 나에게 주어진 미션 하나 시작
+POST http://localhost:8080/1/mission/2
+
+### 3. 미션 종료.. teaseId를 하나 받아서 전체 tease 딱지 제거함
+DELETE http://localhost:8080/1/mission/2
+
+### 4. 이제 다른 사람들 놀릴 차례.. 지도 최초 화면 ??
+
+### 5. 내 움직임 서버에 반영
+POST http://localhost:8080/status
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "coordinate": {
+    "latitude": 60.162875353051994,
+    "longitude": 24.905401468309808
+  },
+  "movement": "WALK"
+}
+
+### 6... 내 움직임 서버에 반영
+POST http://localhost:8080/status
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "coordinate": {
+    "latitude": 60.162875353051994,
+    "longitude": 24.905401468309808
+  },
+  "movement": "WALK"
+}
+
+### 7. npc 선택해서 tease 하기
+POST http://localhost:8080/tease
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "npcId": 2
+}
+
+### 8. npc 선택해서 미션 주기 (정확히는 teaseId로 선택)
+POST http://localhost:8080/1/mission/3
+
+### 9. npc 선택해서 take 시작 (해당 npc를 만나러 가기)
+POST http://localhost:8080/take
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "npcId": 2
+}
+
+### 10. npc 선택해서 take 만나기 완료
+DELETE http://localhost:8080/take
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "npcId": 2
+}
