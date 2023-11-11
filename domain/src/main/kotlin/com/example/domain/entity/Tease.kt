@@ -5,32 +5,33 @@ import org.springframework.boot.autoconfigure.domain.EntityScan
 
 @EntityScan
 @Entity
-class Tease: BaseEntity() {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "tease_id", nullable = false)
-  var id: Long = 0
+class Tease(
+    @Column(name = "from_user")
+    var from: Long = 0,
 
-  @Column(name = "from_user")
-  var from: Long = 0
+    @Column(name = "to_user")
+    var to: Long = 0,
 
-  @Column(name = "to_user")
-  var to: Long = 0
+    @Column(name = "message")
+    var message: String? = null,
 
-  @Column(name = "message")
-  var message: String? = null
+    @Column(name = "mission")
+    var mission: Mission? = null,
+) : BaseEntity() {
 
-  @Column(name = "mission")
-  var mission: Mission? = null
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "tease_id", nullable = false)
+    var id: Long = 0
 
-  @ManyToOne
-  @JoinColumn(name = "user_id")
-  lateinit var user: User
-    protected set
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    lateinit var user: User
+        protected set
 }
 
 enum class Mission(
-  val title: String
+    val title: String
 ) {
-  SHAKE_IT("흔들어"),
+    SHAKE_IT("흔들어"),
 }

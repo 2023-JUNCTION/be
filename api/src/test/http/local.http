@@ -7,5 +7,5 @@ http://localhost:8080/healthCheck
 ### 챗봇
 http://localhost:8080/chat?prompt=안녕하세요를일본어로하면?
 
-### 주문 완료
-http://localhost:8080/orderComplete?orderNumber=1234567890
+### 로그인
+POST http://localhost:8080

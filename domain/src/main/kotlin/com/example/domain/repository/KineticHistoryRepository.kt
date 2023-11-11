@@ -1,4 +1,4 @@
-package com.example.api.repository
+package com.example.domain.repository
 
 import com.example.domain.entity.KineticHistory
 import org.springframework.data.repository.CrudRepository
