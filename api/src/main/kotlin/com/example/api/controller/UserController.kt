@@ -74,7 +74,7 @@ class UserController(
     }
 
     @Operation(description = "유저 상태 업데이트")
-    @PostMapping("/status")
+    @PostMapping("/user/status")
     fun updateUser(@RequestBody request: UpdateUserRequest): UpdateUserResponse {
         val user = userRepository.findById(request.userId).orElseThrow()
 
