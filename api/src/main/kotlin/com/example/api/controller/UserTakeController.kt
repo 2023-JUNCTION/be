@@ -7,6 +7,7 @@ import com.example.domain.repository.UserRepository
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.CrossOrigin
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
@@ -33,6 +34,26 @@ class UserTakeController(
 
         // 해당 유저가 npc를 향해 간다
         user.connectedUserId = npcId
+
+        userRepository.save(user)
+
+        return ResultResponse(true)
+    }
+
+    @Operation(description = "[데모용] 유저가 npc 하나 선택해서 Take 완료")
+    @DeleteMapping("/take")
+    fun done(@RequestBody request: TakeRequest): ResultResponse {
+        val userId = request.userId
+        val npcId = request.npcId
+
+        val user = userRepository.findById(userId).orElseThrow()
+        val npcList = userRepository.findAllByNpcAndUserIdForNpc(true, userId)
+
+        // npcList에 npcId가 존재하지 않으면 예외 처리
+        if (npcList.find { it.id == npcId } == null) throw Exception("해당 유저에 npcId $npcId 를 가진 npc가 존재하지 않음")
+
+        // 해당 유저가 npc를 향해 간다
+        user.connectedUserId = null
 
         userRepository.save(user)
 

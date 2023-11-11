@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan
 @Entity
 @Table(name = "user_table")
 class User(
-    @Column(name = "nickname") var nickname: String,
+    @Column(name = "nickname")
+    var nickname: String,
 
     @OneToOne
     @JoinColumn(name = "coordinate_id")
