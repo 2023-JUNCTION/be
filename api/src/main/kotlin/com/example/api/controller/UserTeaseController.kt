@@ -8,15 +8,11 @@ import com.example.domain.repository.TeaseRepository
 import com.example.domain.repository.UserRepository
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @CrossOrigin(origins = ["*"])
+@RequestMapping("/tease")
 @Tag(name = "Tease API", description = "How to tease friends...")
 class UserTeaseController(
     private val userRepository: UserRepository,
@@ -24,7 +20,7 @@ class UserTeaseController(
     private val teaseRepository: TeaseRepository
 ) {
     @Operation(description = "[데모용] 유저가 npc 하나 선택해서 Tease 요청")
-    @PostMapping("/tease")
+    @PostMapping
     fun request(@RequestBody request: TeaseRequest): ResultResponse {
         val userId = request.userId
         val npcId = request.npcId
@@ -46,7 +42,7 @@ class UserTeaseController(
     }
 
     @Operation(description = "특정 Tease 삭제 (Tease가 만료되거나 유저가 직접 취소하거나..)")
-    @DeleteMapping("/tease/{teaseId}")
+    @DeleteMapping("/{teaseId}")
     fun delete(@PathVariable teaseId: Long): ResultResponse {
         teaseRepository.deleteById(teaseId)
         return ResultResponse(true)
