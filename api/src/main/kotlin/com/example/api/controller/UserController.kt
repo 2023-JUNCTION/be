@@ -23,7 +23,7 @@ class UserController(
     private val teaseRepository: TeaseRepository
 ) {
     @Operation(description = "게스트 로그인 시 User 생성 (default 데이터 세팅 O)")
-    @PostMapping("/")
+    @PostMapping("/user")
     fun createUser(): CreateUserResponse {
         val initCoordinate = Coordinate(
             latitude = 0.0,

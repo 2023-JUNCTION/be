@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
@@ -18,7 +19,8 @@ import org.springframework.web.bind.annotation.RestController
 class AdminController(
     private val userRepository: UserRepository,
     private val coordinateRepository: CoordinateRepository,
-    private val teaseRepository: TeaseRepository
+    private val teaseRepository: TeaseRepository,
+    private val userController: UserController
 ) {
     @Operation(description = "전체 유저 조회")
     @GetMapping("/admin/all-user")
@@ -55,5 +57,14 @@ class AdminController(
             "user" to user,
             "npcList" to npcList
         )
+    }
+
+    @Operation(description = "테스트용 더미 데이터 생성")
+    @PostMapping("/admin/create-dummy-data")
+    fun createDummyData(): ResultResponse {
+        userController.createUser()
+        userController.createUser()
+        userController.createUser()
+        return ResultResponse(true)
     }
 }
