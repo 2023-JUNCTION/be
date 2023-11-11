@@ -2,7 +2,7 @@ package com.example.domain.entity
 
 import jakarta.persistence.*
 
-@MappedSuperclass
+@Entity
 @Table(name = "character_table")
 abstract class Character: BaseEntity() {
     @Id
@@ -14,6 +14,7 @@ abstract class Character: BaseEntity() {
     var nickname: String = ""
 
     @OneToOne
+    @JoinColumn(name = "coordinate_id")
     lateinit var coordinate: Coordinate
 
     @Column(name = "movement")
