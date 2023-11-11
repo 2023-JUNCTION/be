@@ -20,7 +20,7 @@ class AdminController(
     private val coordinateRepository: CoordinateRepository,
     private val teaseRepository: TeaseRepository
 ) {
-    @Operation(description = "전체 가유저 조회")
+    @Operation(description = "전체 유저 조회")
     @GetMapping("/admin/all-user")
     fun allUser(): Any {
         return userRepository.findAll()
@@ -33,13 +33,13 @@ class AdminController(
     }
 
     @Operation(description = "특정 유저의 전체 Tease 조회")
-    @GetMapping("/admin/all-tease")
+    @GetMapping("/admin/user-all-tease")
     fun userAllTease(@RequestParam userId: Long): Any {
         return teaseRepository.findAllByUserId(userId)
     }
 
     @Operation(description = "특정 유저의 전체 Tease 삭제")
-    @DeleteMapping("/admin/all-tease")
+    @DeleteMapping("/admin/user-all-tease")
     fun deleteUserAllTease(@RequestParam userId: Long): ResultResponse {
         val allByUserId = teaseRepository.findAllByUserId(userId)
         teaseRepository.deleteAllById(allByUserId.map { it.id })
