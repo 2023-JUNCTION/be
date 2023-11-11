@@ -23,25 +23,8 @@ coordinate
 나의 하이파이브 상태(t/f)
 created_at
 updated_at
-
-Npc (User : Npc = 1 : 5)
-id
-user_id
-nickname
-coordinate
-캐릭터 생김새 id (캐릭터의 생김새는 유저마다 다르다)
-움직임 상태
-- 프론트에서 들고있는 정보 : 서있다, 걷고있다
-- 프론트에서 주기적으로 정보를 서버로 전달함 : 서 t/f, 걷 t/f (노이즈 발생 가능)
-- timeseries db
-- 캐릭터의 행동 1,2,3,4,5 (앉아있음, 걷고있음) 판별 가능
-미션 진행 상태
-- 미션 시작, 중, 미션 종료 여부는 클라에서 판단
-내가 받은 티징 딱지
-+ 내가 쏜 티징 딱지
-나의 하이파이브 상태(t/f)
-created_at
-updated_at
+npc npc 유저 여부
+userIdForNpc 어떤 유저의 npc인지
 
 Tease
 id
