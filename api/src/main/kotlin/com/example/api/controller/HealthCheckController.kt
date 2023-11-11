@@ -13,5 +13,9 @@ class HealthCheckController {
 
     @Operation(description = "헬스체크")
     @GetMapping("/healthCheck")
-    fun healthCheck() = "OK"
+    fun healthCheck() = HealthCheckResponse()
 }
+
+data class HealthCheckResponse(
+    val status: String = "UP"
+)
