@@ -9,3 +9,6 @@ http://localhost:8080/chat?prompt=안녕하세요를일본어로하면?
 
 ### 로그인
 POST http://localhost:8080
+
+### 미션 시작
+POST http://localhost:8080/1/mission/2

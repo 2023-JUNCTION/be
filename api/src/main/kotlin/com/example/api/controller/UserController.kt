@@ -1,6 +1,5 @@
 package com.example.api.controller
 
-import com.example.api.dto.CreateUserResponse
 import com.example.domain.repository.UserRepository
 import com.example.domain.entity.Coordinate
 import com.example.domain.entity.Mission
@@ -37,7 +36,7 @@ class UserController(
             coordinate = saved,
             movement = MovementStatus.STAND,
             missionStatus = false,
-            teases = mutableListOf(),
+            teases = null,
             connectedUserId = null,
             npc = false,
             userIdForNpc = null
@@ -45,24 +44,25 @@ class UserController(
 
         val savedUser = userRepository.save(newUser)
 
-        val defaultTeases = mutableListOf(
-            teaseRepository.save(
-                Tease(
-                    from = 1,
-                    to = savedUser.id,
-                    message = "메롱 👅",
-                )
-            ),
-            teaseRepository.save(
-                Tease(
-                    from = 2,
-                    to = savedUser.id,
-                    mission = Mission.SHAKE_IT,
-                )
+        val tease1 = teaseRepository.save(
+            Tease(
+                from = 1,
+                to = savedUser.id,
+                message = "메롱!!",
+                user = savedUser
             )
         )
 
-        savedUser.teases = defaultTeases
+        val tease2 = teaseRepository.save(
+            Tease(
+                from = 2,
+                to = savedUser.id,
+                mission = Mission.SHAKE_IT,
+                user = savedUser
+            )
+        )
+
+        savedUser.teases = mutableListOf(tease1, tease2)
 
         val save = userRepository.save(savedUser)
         return CreateUserResponse(
@@ -70,3 +70,7 @@ class UserController(
         )
     }
 }
+
+data class CreateUserResponse(
+    val id: Long,
+)

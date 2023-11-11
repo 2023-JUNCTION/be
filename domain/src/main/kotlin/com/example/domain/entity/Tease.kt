@@ -17,17 +17,16 @@ class Tease(
 
     @Column(name = "mission")
     var mission: Mission? = null,
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    var user: User? = null,
 ) : BaseEntity() {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tease_id", nullable = false)
     var id: Long = 0
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    lateinit var user: User
-        protected set
 }
 
 enum class Mission(
